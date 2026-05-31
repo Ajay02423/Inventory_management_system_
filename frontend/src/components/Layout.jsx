@@ -270,16 +270,6 @@ export default function Layout() {
                 <HelpCircle className="h-4 w-4" />
                 <span className="hidden sm:inline">Help</span>
               </button>
-              <button
-                type="button"
-                onClick={openUserManual}
-                aria-label="Open User Manual"
-                title="Open User Manual"
-                className="flex items-center gap-1.5 rounded-xl border border-ink/10 px-3 py-2 text-sm text-ink/60 transition-colors hover:bg-white/80 hover:text-ink"
-              >
-                <FileText className="h-4 w-4" />
-                <span className="hidden sm:inline">User Manual</span>
-              </button>
               <UserMenu />
             </div>
           </div>
@@ -308,18 +298,6 @@ export default function Layout() {
                 <HelpCircle className="h-5 w-5 flex-shrink-0" />
                 <span>Help</span>
               </NavLink>
-              <button
-                type="button"
-                onClick={() => {
-                  openUserManual();
-                  setMenuOpen(false);
-                }}
-                aria-label="Open User Manual"
-                className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors text-ink/70 hover:bg-brand-50 hover:text-ink"
-              >
-                <FileText className="h-5 w-5 flex-shrink-0" />
-                <span>User Manual</span>
-              </button>
             </nav>
           ) : null}
         </header>
