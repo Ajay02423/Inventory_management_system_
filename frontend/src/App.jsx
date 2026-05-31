@@ -4,7 +4,6 @@ import Layout from "./components/Layout";
 import { useAuth } from "./context/AuthContext";
 import CustomersPage from "./pages/CustomersPage";
 import DashboardPage from "./pages/DashboardPage";
-import HelpPage from "./pages/HelpPage";
 import LoginPage from "./pages/LoginPage";
 import OrderDetailPage from "./pages/OrderDetailPage";
 import OrdersPage from "./pages/OrdersPage";
@@ -31,7 +30,6 @@ export default function App() {
         <Route path="/customers" element={<CustomersPage />} />
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/orders/:orderId" element={<OrderDetailPage />} />
-        <Route path="/help" element={<HelpPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
