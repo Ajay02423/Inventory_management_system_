@@ -19,12 +19,14 @@ function validateProduct(values) {
   const errors = {};
 
   if (!values.name.trim()) errors.name = "Product name is required.";
+  if (values.name.length > 100) errors.name = "Product name cannot exceed 100 characters.";
   if (!values.sku.trim()) errors.sku = "SKU is required.";
   if (!isValidNumericInput(values.price, { min: 0 })) errors.price = "Price must be 0 or higher.";
   if (!isValidNumericInput(values.quantity, { min: 0, integer: true })) errors.quantity = "Stock must be 0 or higher.";
   if (!isValidNumericInput(values.low_stock_threshold, { min: 1, integer: true })) {
     errors.low_stock_threshold = "Threshold must be at least 1.";
   }
+  if (values.description.length > 500) errors.description = "Description cannot exceed 500 characters.";
 
   return errors;
 }
@@ -91,8 +93,26 @@ export default function ProductFormModal({ open, onClose, onSubmit, submitting, 
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div className="grid gap-4 md:grid-cols-2">
           <div>
-            <label className="field-label" htmlFor="name">Product name</label>
-            <input className="field-input" id="name" name="name" value={form.name} onChange={handleChange} />
+            <div className="flex items-center justify-between">
+              <label className="field-label" htmlFor="name">Product name</label>
+              <span className={`text-xs ${
+                form.name.length > 80
+                  ? form.name.length >= 100 
+                    ? "text-red-500"
+                    : "text-amber-500"
+                  : "text-ink/45"
+              }`}>
+                {form.name.length} / 100
+              </span>
+            </div>
+            <input 
+              className="field-input" 
+              id="name" 
+              name="name" 
+              maxLength={100}
+              value={form.name} 
+              onChange={handleChange} 
+            />
             {errors.name ? <p className="field-error">{errors.name}</p> : null}
           </div>
           <div>
@@ -120,8 +140,27 @@ export default function ProductFormModal({ open, onClose, onSubmit, submitting, 
         />
 
         <div>
-          <label className="field-label" htmlFor="description">Description</label>
-          <textarea className="field-input min-h-28" id="description" name="description" value={form.description} onChange={handleChange} />
+          <div className="flex items-center justify-between">
+            <label className="field-label" htmlFor="description">Description</label>
+            <span className={`text-xs ${
+              form.description.length > 400
+                ? form.description.length >= 500 
+                  ? "text-red-500"
+                  : "text-amber-500"
+                : "text-ink/45"
+            }`}>
+              {form.description.length} / 500
+            </span>
+          </div>
+          <textarea 
+            className="field-input min-h-28" 
+            id="description" 
+            name="description" 
+            maxLength={500}
+            value={form.description} 
+            onChange={handleChange} 
+          />
+          {errors.description ? <p className="field-error">{errors.description}</p> : null}
         </div>
 
         <div>

@@ -9,12 +9,12 @@ from app.models import OrderStatus
 
 
 class ProductBase(BaseModel):
-    name: str = Field(min_length=1, max_length=255)
+    name: str = Field(min_length=1, max_length=100)
     sku: str = Field(min_length=1, max_length=100)
     price: float = Field(ge=0)
     quantity: int = Field(ge=0)
     low_stock_threshold: int = Field(default=10, ge=1)
-    description: str | None = None
+    description: str | None = Field(None, max_length=500)
     image_url: str | None = None
 
 

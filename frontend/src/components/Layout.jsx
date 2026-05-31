@@ -6,6 +6,7 @@ import {
   ChevronRight,
   ClipboardList,
   FileText,
+  HelpCircle,
   LogOut,
   Menu,
   Users,
@@ -263,6 +264,14 @@ export default function Layout() {
             <div className="flex items-center gap-3">
               <button
                 type="button"
+                onClick={() => navigate("/help")}
+                className="flex items-center gap-1.5 rounded-xl border border-ink/10 px-3 py-2 text-sm text-ink/60 transition-colors hover:bg-white/80 hover:text-ink"
+              >
+                <HelpCircle className="h-4 w-4" />
+                <span className="hidden sm:inline">Help</span>
+              </button>
+              <button
+                type="button"
                 onClick={openUserManual}
                 aria-label="Open User Manual"
                 title="Open User Manual"
@@ -285,6 +294,20 @@ export default function Layout() {
                   onClick={() => setMenuOpen(false)}
                 />
               ))}
+              <NavLink
+                to="/help"
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                    isActive
+                      ? "bg-accent-500/20 text-accent-700"
+                      : "text-ink/70 hover:bg-brand-50 hover:text-ink"
+                  }`
+                }
+              >
+                <HelpCircle className="h-5 w-5 flex-shrink-0" />
+                <span>Help</span>
+              </NavLink>
               <button
                 type="button"
                 onClick={() => {
